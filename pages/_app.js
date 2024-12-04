@@ -12,6 +12,20 @@ export default function App({ Component, pageProps }) {
     isLoading,
   } = useSWR("https://example-apis.vercel.app/api/art", fetcher);
 
+  const [favourites, setFavourites] = useState([]);
+
+  function handleFavourites(favouriteObject) {
+    if (favourites.includes(favouriteObject.slug)) {
+      setFavourites(
+        favourites.filter(() => {
+          !favouriteObject;
+        })
+      );
+    } else {
+      setFavourites([...favourites, favouriteObject]);
+    }
+  }
+
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
 
@@ -19,7 +33,11 @@ export default function App({ Component, pageProps }) {
     <>
       <GlobalStyle />
       <Layout>
-        <Component artistArray={artistArray} {...pageProps} />
+        <Component
+          artistArray={artistArray}
+          handleFavourites={handleFavourites}
+          {...pageProps}
+        />
       </Layout>
     </>
   );
