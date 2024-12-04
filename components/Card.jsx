@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Card({ imageSource, name, artist }) {
   return (
-    <li>
+    <>
       <Image src={imageSource} alt={name} width={250} height={250}>
         {/* <img
           src={"../assets/startTrackValue.svg"}
@@ -12,6 +12,6 @@ export default function Card({ imageSource, name, artist }) {
       <h2>
         {`"${name}"`} by {artist}
       </h2>
-    </li>
+    </>
   );
 }
