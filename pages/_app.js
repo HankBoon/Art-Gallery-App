@@ -13,7 +13,6 @@ export default function App({ Component, pageProps }) {
 
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
-  console.log(artistArray);
 
   return (
     <>
