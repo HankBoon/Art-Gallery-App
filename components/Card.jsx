@@ -2,16 +2,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-export default function Card({ imageSource, name, artist, slug }) {
+export default function Card({ piece, handleFavourites }) {
   const [isFavourite, setIsFavourite] = useState(false);
 
   function handleISFavourite() {
     setIsFavourite(!isFavourite);
   }
-
   return (
     <>
-      <button onClick={handleISFavourite}>
+      <button
+        onClick={() => {
+          handleFavourites(piece);
+          handleISFavourite();
+        }}
+      >
         {!isFavourite ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -45,11 +49,16 @@ export default function Card({ imageSource, name, artist, slug }) {
         )}
       </button>
 
-      <Link href={`art-overview/${slug}`}>
-        <Image src={imageSource} alt={name} width={250} height={250}></Image>
+      <Link href={`art-overview/${piece.slug}`}>
+        <Image
+          src={piece.imageSource}
+          alt={piece.name}
+          width={250}
+          height={250}
+        ></Image>
 
         <h2>
-          {`"${name}"`} by {artist}
+          {`"${piece.name}"`} by {piece.artist}
         </h2>
       </Link>
     </>

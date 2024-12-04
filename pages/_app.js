@@ -13,13 +13,13 @@ export default function App({ Component, pageProps }) {
   } = useSWR("https://example-apis.vercel.app/api/art", fetcher);
 
   const [favourites, setFavourites] = useState([]);
-
+  console.log(favourites);
   function handleFavourites(favouriteObject) {
     if (favourites.includes(favouriteObject.slug)) {
       setFavourites(
-        favourites.filter(() => {
-          !favouriteObject;
-        })
+        favourites.filter(
+          (favourite) => favourite.slug !== favouriteObject.slug
+        )
       );
     } else {
       setFavourites([...favourites, favouriteObject]);
