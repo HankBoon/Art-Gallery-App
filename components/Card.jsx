@@ -10,7 +10,7 @@ export default function Card({ imageSource, name, artist }) {
         ></img> */}
       </Image>
       <h2>
-        {name} by {artist}
+        {`"${name}"`} by {artist}
       </h2>
     </li>
   );
