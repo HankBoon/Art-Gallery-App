@@ -7,13 +7,14 @@ export default function CardList({ artistArray }) {
       {artistArray.map(({ slug, name, imageSource, artist }) => {
         return (
           <li key={slug}>
-            <Link href={`art-overview/${slug}`}>
-              <Card
-                imageSource={imageSource}
-                name={name}
-                artist={artist}
-              ></Card>
-            </Link>
+            {/* <Link href={`art-overview/${slug}`}> */}
+            <Card
+              imageSource={imageSource}
+              name={name}
+              artist={artist}
+              slug={slug}
+            ></Card>
+            {/* </Link> */}
           </li>
         );
       })}

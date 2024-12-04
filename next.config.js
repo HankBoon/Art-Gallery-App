@@ -8,6 +8,12 @@ const nextConfig = {
         port: "",
       },
     ],
+    loacalPatterns: [
+      {
+        pathname: "/public/",
+        search: "",
+      },
+    ],
   },
   compiler: {
     styledComponents: true,
