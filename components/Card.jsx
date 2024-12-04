@@ -1,13 +1,13 @@
 import Image from "next/image";
 
-export default function Card({ imageSource, name }) {
+export default function Card({ imageSource, name, artist }) {
   return (
     <li>
-      <Image src={imageSource} alt={name} width={500} height={500}>
-        <Image
+      <Image src={imageSource} alt={name} width={250} height={250}>
+        {/* <img
           src={"../assets/startTrackValue.svg"}
           alt="unchecked favourite icon"
-        ></Image>
+        ></img> */}
       </Image>
       <h2>
         {name} by {artist}
