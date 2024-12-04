@@ -1,5 +1,7 @@
 import GlobalStyle from "../styles";
 import useSWR from "swr";
+import Layout from "@/components/Layout";
+
 const fetcher = (...args) => fetch(...args).then((response) => response.json());
 
 export default function App({ Component, pageProps }) {
@@ -16,7 +18,9 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <Component artistArray={artistArray} {...pageProps} />
+      <Layout>
+        <Component artistArray={artistArray} {...pageProps} />
+      </Layout>
     </>
   );
 }
