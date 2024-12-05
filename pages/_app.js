@@ -35,6 +35,7 @@ export default function App({ Component, pageProps }) {
       <Layout>
         <Component
           artistArray={artistArray}
+          favouritesArray={favouritesArray}
           handleFavourites={handleFavourites}
           {...pageProps}
         />

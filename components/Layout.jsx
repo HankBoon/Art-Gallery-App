@@ -17,6 +17,11 @@ export default function Layout({ children }) {
             <strong>Gallery</strong>
           </StyledLink>
         </StyledButton>
+        <StyledButton>
+          <StyledLink href="/favourites">
+            <strong>Favourites</strong>
+          </StyledLink>
+        </StyledButton>
       </StyledFooter>
     </>
   );

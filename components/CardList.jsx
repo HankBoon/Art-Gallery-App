@@ -1,7 +1,11 @@
 import Card from "./Card";
 import Link from "next/link";
 
-export default function CardList({ artistArray, handleFavourites }) {
+export default function CardList({
+  artistArray,
+  handleFavourites,
+  favouritesArray,
+}) {
   return (
     <ul>
       {artistArray.map((piece) => {
@@ -11,6 +15,7 @@ export default function CardList({ artistArray, handleFavourites }) {
               piece={piece}
               handleFavourites={handleFavourites}
               isLink={true}
+              favouritesArray={favouritesArray}
             ></Card>
           </li>
         );
