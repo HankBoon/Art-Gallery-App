@@ -40,12 +40,12 @@ export default function CommentForm({
   return (
     <>
       {" "}
+      <CommentList foundObject={foundObject}></CommentList>
       <form onSubmit={handleFormSubmit}>
         <label htmlFor="comment">Comment:</label>
         <input type="text" id="comment" name="comment"></input>
         <button type="submit">Add Comment</button>
       </form>
-      <CommentList foundObject={foundObject}></CommentList>
     </>
   );
 }
