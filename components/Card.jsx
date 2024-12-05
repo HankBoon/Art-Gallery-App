@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-export default function Card({ piece, handleFavourites }) {
+export default function Card({ piece, handleFavourites, isLink }) {
   const [isFavourite, setIsFavourite] = useState(false);
 
   function handleISFavourite() {
@@ -49,18 +49,33 @@ export default function Card({ piece, handleFavourites }) {
         )}
       </button>
 
-      <Link href={`art-overview/${piece.slug}`}>
-        <Image
-          src={piece.imageSource}
-          alt={piece.name}
-          width={250}
-          height={250}
-        ></Image>
+      {isLink ? (
+        <Link href={`art-overview/${piece.slug}`}>
+          <Image
+            src={piece.imageSource}
+            alt={piece.name}
+            width={250}
+            height={250}
+          ></Image>
 
-        <h2>
-          {`"${piece.name}"`} by {piece.artist}
-        </h2>
-      </Link>
+          <h2>
+            {`"${piece.name}"`} by {piece.artist}
+          </h2>
+        </Link>
+      ) : (
+        <>
+          <Image
+            src={piece.imageSource}
+            alt={piece.name}
+            width={250}
+            height={250}
+          ></Image>
+
+          <h2>
+            {`"${piece.name}"`} by {piece.artist}
+          </h2>
+        </>
+      )}
     </>
   );
 }
