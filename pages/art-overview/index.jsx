@@ -1,5 +1,10 @@
 import CardList from "@/components/CardList";
 
-export default function artOverview({ artistArray }) {
-  return <CardList artistArray={artistArray}></CardList>;
+export default function artOverview({ artistArray, handleFavourites }) {
+  return (
+    <CardList
+      artistArray={artistArray}
+      handleFavourites={handleFavourites}
+    ></CardList>
+  );
 }

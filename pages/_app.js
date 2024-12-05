@@ -1,6 +1,7 @@
 import GlobalStyle from "../styles";
 import useSWR from "swr";
 import Layout from "@/components/Layout";
+import { useState } from "react";
 
 const fetcher = (...args) => fetch(...args).then((response) => response.json());
 
@@ -11,6 +12,22 @@ export default function App({ Component, pageProps }) {
     isLoading,
   } = useSWR("https://example-apis.vercel.app/api/art", fetcher);
 
+  const [favouritesArray, setFavouritesArray] = useState([]);
+
+  console.log(favouritesArray);
+
+  function handleFavourites(favouriteObject) {
+    if (favouritesArray.includes(favouriteObject.slug)) {
+      setFavouritesArray(
+        favouritesArray.filter(
+          (favouriteItem) => favouriteItem.slug !== favouriteObject.slug
+        )
+      );
+    } else {
+      setFavouritesArray([...favouritesArray, favouriteObject]);
+    }
+  }
+
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
 
@@ -18,7 +35,11 @@ export default function App({ Component, pageProps }) {
     <>
       <GlobalStyle />
       <Layout>
-        <Component artistArray={artistArray} {...pageProps} />
+        <Component
+          artistArray={artistArray}
+          handleFavourites={handleFavourites}
+          {...pageProps}
+        />
       </Layout>
     </>
   );

@@ -1,19 +1,16 @@
 import Card from "./Card";
 import Link from "next/link";
 
-export default function CardList({ artistArray }) {
+export default function CardList({ artistArray, handleFavourites }) {
+  console.log(artistArray);
   return (
     <ul>
-      {artistArray.map(({ slug, name, imageSource, artist }) => {
+      {artistArray.map((piece) => {
         return (
-          <li key={slug}>
-            <Link href={`art-overview/${slug}`}>
-              <Card
-                imageSource={imageSource}
-                name={name}
-                artist={artist}
-              ></Card>
-            </Link>
+          <li key={piece.slug}>
+            {/* <Link href={`art-overview/${slug}`}> */}
+            <Card piece={piece} handleFavourites={handleFavourites}></Card>
+            {/* </Link> */}
           </li>
         );
       })}

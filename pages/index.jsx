@@ -1,6 +1,6 @@
 import Card from "@/components/Card";
 
-export default function HomePage({ artistArray }) {
+export default function HomePage({ artistArray, handleFavourites }) {
   function getRandomArt() {
     const randomIndex = Math.floor(Math.random() * artistArray.length);
     return artistArray[randomIndex];
@@ -8,11 +8,5 @@ export default function HomePage({ artistArray }) {
 
   const randomArt = getRandomArt();
 
-  return (
-    <Card
-      imageSource={randomArt.imageSource}
-      name={randomArt.name}
-      artist={randomArt.artist}
-    />
-  );
+  return <Card handleFavourites={handleFavourites} piece={randomArt} />;
 }

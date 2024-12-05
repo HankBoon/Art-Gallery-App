@@ -47,7 +47,7 @@ const StyledLink = styled(Link)`
   font-size: 2rem;
   color: white;
   &:hover {
-    background-color: #0d1117da;
+    background-color: grey;
   }
 `;
 const StyledH1 = styled.h1`
