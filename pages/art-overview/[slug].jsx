@@ -2,8 +2,15 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import Card from "@/components/Card";
+import CommentForm from "@/components/CommentForm";
 
-export default function Details({ artistArray, handleFavourites }) {
+export default function Details({
+  artistArray,
+  handleFavourites,
+  favouritesArray,
+  setArtistArrayComments,
+  artistArrayComments,
+}) {
   const router = useRouter();
   const { slug } = router.query;
 
@@ -14,6 +21,15 @@ export default function Details({ artistArray, handleFavourites }) {
   }
 
   const artPiece = getArtPiece();
+  console.log("ArtistArrayComments from slug:", artistArrayComments);
+
+  const foundObject = artistArrayComments.find(
+    (item) => item.slug === artPiece.slug
+  );
+
+  if (!foundObject.comment) {
+    foundObject.comment = [];
+  }
 
   return (
     <>
@@ -23,9 +39,17 @@ export default function Details({ artistArray, handleFavourites }) {
         piece={artPiece}
         handleFavourites={handleFavourites}
         isLink={false}
+        favouritesArray={favouritesArray}
       />
       <h3>Year: {artPiece.year}</h3>
       <h3>Genre: {artPiece.genre}</h3>
+      <CommentForm
+        artistArray={artistArray}
+        setArtistArrayComments={setArtistArrayComments}
+        artistArrayComments={artistArrayComments}
+        piece={artPiece}
+        foundObject={foundObject}
+      ></CommentForm>
     </>
   );
 }
