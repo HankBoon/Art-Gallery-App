@@ -1,15 +1,23 @@
 import GlobalStyle from "../styles";
 import useSWR from "swr";
 import Layout from "@/components/Layout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const fetcher = (...args) => fetch(...args).then((response) => response.json());
 
 export default function App({ Component, pageProps }) {
-  const { data, error, isLoading } = useSWR(
-    "https://example-apis.vercel.app/api/art",
-    fetcher
-  );
+  const {
+    data: artistArray,
+    error,
+    isLoading,
+  } = useSWR("https://example-apis.vercel.app/api/art", fetcher);
+
+  const [artistArrayComments, setArtistArrayComments] = useState([]);
+
+  useEffect(() => {
+    setArtistArrayComments(artistArray);
+  }, [artistArray]);
+  console.log("artistArrayComments from app:", artistArrayComments);
 
   const [favouritesArray, setFavouritesArray] = useState([]);
 
@@ -36,6 +44,8 @@ export default function App({ Component, pageProps }) {
           artistArray={artistArray}
           favouritesArray={favouritesArray}
           handleFavourites={handleFavourites}
+          setArtistArrayComments={setArtistArrayComments}
+          artistArrayComments={artistArrayComments}
           {...pageProps}
         />
       </Layout>

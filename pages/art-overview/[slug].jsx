@@ -8,6 +8,8 @@ export default function Details({
   artistArray,
   handleFavourites,
   favouritesArray,
+  setArtistArrayComments,
+  artistArrayComments,
 }) {
   const router = useRouter();
   const { slug } = router.query;
@@ -32,7 +34,12 @@ export default function Details({
       />
       <h3>Year: {artPiece.year}</h3>
       <h3>Genre: {artPiece.genre}</h3>
-      <CommentForm artistArray={artistArray}></CommentForm>
+      <CommentForm
+        artistArray={artistArray}
+        setArtistArrayComments={setArtistArrayComments}
+        artistArrayComments={artistArrayComments}
+        piece={artPiece}
+      ></CommentForm>
     </>
   );
 }
