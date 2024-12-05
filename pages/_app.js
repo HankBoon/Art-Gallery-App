@@ -14,10 +14,8 @@ export default function App({ Component, pageProps }) {
 
   const [favouritesArray, setFavouritesArray] = useState([]);
 
-  console.log(favouritesArray);
-
   function handleFavourites(favouriteObject) {
-    if (favouritesArray.includes(favouriteObject.slug)) {
+    if (favouritesArray.some((item) => item.slug === favouriteObject.slug)) {
       setFavouritesArray(
         favouritesArray.filter(
           (favouriteItem) => favouriteItem.slug !== favouriteObject.slug

@@ -1,8 +1,9 @@
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
+import Card from "@/components/Card";
 
-export default function Details({ artistArray }) {
+export default function Details({ artistArray, handleFavourites }) {
   const router = useRouter();
   const { slug } = router.query;
 
@@ -18,20 +19,11 @@ export default function Details({ artistArray }) {
     <>
       <Link href="/art-overview">← Back to Overview</Link>
       <br />
-      <Image
-        src={artPiece.imageSource}
-        alt={artPiece.name}
-        width={250}
-        height={250}
-      >
-        {/* <img
-          src={"../assets/startTrackValue.svg"}
-          alt="unchecked favourite icon"
-        ></img> */}
-      </Image>
-      <h2>
-        {`"${artPiece.name}"`} by {artPiece.artist}
-      </h2>
+      <Card
+        piece={artPiece}
+        handleFavourites={handleFavourites}
+        isLink={false}
+      />
       <h3>Year: {artPiece.year}</h3>
       <h3>Genre: {artPiece.genre}</h3>
     </>
