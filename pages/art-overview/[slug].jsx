@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import Image from "next/image";
 import Link from "next/link";
 import Card from "@/components/Card";
 import CommentForm from "@/components/CommentForm";
@@ -21,7 +20,6 @@ export default function Details({
   }
 
   const artPiece = getArtPiece();
-  console.log("ArtistArrayComments from slug:", artistArrayComments);
 
   const foundObject = artistArrayComments.find(
     (item) => item.slug === artPiece.slug
