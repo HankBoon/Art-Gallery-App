@@ -13,8 +13,13 @@ export default function App({ Component, pageProps }) {
   } = useSWR("https://example-apis.vercel.app/api/art", fetcher);
 
   const [artistArrayComments, setArtistArrayComments] = useState([]);
+  const [favouritesArray, setFavouritesArray] = useState([]);
 
-  function handleUpdateArtistArrayComments(newComment) {
+  useEffect(() => {
+    setArtistArrayComments(artistArray);
+  }, [artistArray]);
+
+  function handleComments(newComment) {
     setArtistArrayComments(
       artistArrayComments.map((arrayItem) => {
         if (arrayItem.slug === newComment.slug) return newComment;
@@ -22,13 +27,6 @@ export default function App({ Component, pageProps }) {
       })
     );
   }
-
-  useEffect(() => {
-    setArtistArrayComments(artistArray);
-  }, [artistArray]);
-  console.log("artistArrayComments from app:", artistArrayComments);
-
-  const [favouritesArray, setFavouritesArray] = useState([]);
 
   function handleFavourites(favouriteObject) {
     if (favouritesArray.some((item) => item.slug === favouriteObject.slug)) {
@@ -53,7 +51,7 @@ export default function App({ Component, pageProps }) {
           artistArray={artistArray}
           favouritesArray={favouritesArray}
           handleFavourites={handleFavourites}
-          setArtistArrayComments={handleUpdateArtistArrayComments}
+          setArtistArrayComments={handleComments}
           artistArrayComments={artistArrayComments}
           {...pageProps}
         />

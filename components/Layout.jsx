@@ -34,6 +34,7 @@ const StyledFooter = styled.footer`
   position: fixed;
   bottom: 0px;
   justify-content: space-evenly;
+  margin-top: 100px;
 `;
 
 const StyledButton = styled.button`
