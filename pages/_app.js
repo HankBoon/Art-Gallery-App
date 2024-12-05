@@ -12,17 +12,19 @@ export default function App({ Component, pageProps }) {
     isLoading,
   } = useSWR("https://example-apis.vercel.app/api/art", fetcher);
 
-  const [favourites, setFavourites] = useState([]);
-  console.log(favourites);
+  const [favouritesArray, setFavouritesArray] = useState([]);
+
+  console.log(favouritesArray);
+
   function handleFavourites(favouriteObject) {
-    if (favourites.includes(favouriteObject.slug)) {
-      setFavourites(
-        favourites.filter(
-          (favourite) => favourite.slug !== favouriteObject.slug
+    if (favouritesArray.includes(favouriteObject.slug)) {
+      setFavouritesArray(
+        favouritesArray.filter(
+          (favouriteItem) => favouriteItem.slug !== favouriteObject.slug
         )
       );
     } else {
-      setFavourites([...favourites, favouriteObject]);
+      setFavouritesArray([...favouritesArray, favouriteObject]);
     }
   }
 
