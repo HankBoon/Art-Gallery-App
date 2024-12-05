@@ -6,11 +6,10 @@ import { useState } from "react";
 const fetcher = (...args) => fetch(...args).then((response) => response.json());
 
 export default function App({ Component, pageProps }) {
-  const {
-    data: artistArray,
-    error,
-    isLoading,
-  } = useSWR("https://example-apis.vercel.app/api/art", fetcher);
+  const { data, error, isLoading } = useSWR(
+    "https://example-apis.vercel.app/api/art",
+    fetcher
+  );
 
   const [favouritesArray, setFavouritesArray] = useState([]);
 
