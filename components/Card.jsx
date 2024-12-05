@@ -2,7 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-export default function Card({ piece, handleFavourites, isLink }) {
+export default function Card({
+  piece,
+  handleFavourites,
+  isLink,
+  favouritesArray,
+}) {
   const [isFavourite, setIsFavourite] = useState(false);
 
   function handleISFavourite() {
@@ -16,13 +21,13 @@ export default function Card({ piece, handleFavourites, isLink }) {
           handleISFavourite();
         }}
       >
-        {!isFavourite ? (
+        {favouritesArray.some((item) => item.slug === piece.slug) ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
             viewBox="0 0 24 24"
-            fill="none"
+            fill="currentColor"
             stroke="currentColor"
             strokeWidth="2"
             strokeLinecap="round"
@@ -37,7 +42,7 @@ export default function Card({ piece, handleFavourites, isLink }) {
             width="24"
             height="24"
             viewBox="0 0 24 24"
-            fill="currentColor"
+            fill="none"
             stroke="currentColor"
             strokeWidth="2"
             strokeLinecap="round"

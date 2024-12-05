@@ -2,7 +2,11 @@ import Card from "@/components/Card";
 import { useEffect } from "react";
 import { useState } from "react";
 
-export default function HomePage({ artistArray, handleFavourites }) {
+export default function HomePage({
+  artistArray,
+  handleFavourites,
+  favouritesArray,
+}) {
   const [randomArt, setRandomArt] = useState([]);
 
   function getRandomArt() {
@@ -15,6 +19,11 @@ export default function HomePage({ artistArray, handleFavourites }) {
   }, []);
 
   return (
-    <Card handleFavourites={handleFavourites} piece={randomArt} isLink={true} />
+    <Card
+      handleFavourites={handleFavourites}
+      piece={randomArt}
+      isLink={true}
+      favouritesArray={favouritesArray}
+    />
   );
 }
