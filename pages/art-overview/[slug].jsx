@@ -21,6 +21,15 @@ export default function Details({
   }
 
   const artPiece = getArtPiece();
+  console.log("ArtistArrayComments from slug:", artistArrayComments);
+
+  const foundObject = artistArrayComments.find(
+    (item) => item.slug === artPiece.slug
+  );
+
+  if (!foundObject.comment) {
+    foundObject.comment = [];
+  }
 
   return (
     <>
@@ -39,6 +48,7 @@ export default function Details({
         setArtistArrayComments={setArtistArrayComments}
         artistArrayComments={artistArrayComments}
         piece={artPiece}
+        foundObject={foundObject}
       ></CommentForm>
     </>
   );

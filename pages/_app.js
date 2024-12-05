@@ -14,6 +14,15 @@ export default function App({ Component, pageProps }) {
 
   const [artistArrayComments, setArtistArrayComments] = useState([]);
 
+  function handleUpdateArtistArrayComments(newComment) {
+    setArtistArrayComments(
+      artistArrayComments.map((arrayItem) => {
+        if (arrayItem.slug === newComment.slug) return newComment;
+        return arrayItem;
+      })
+    );
+  }
+
   useEffect(() => {
     setArtistArrayComments(artistArray);
   }, [artistArray]);
@@ -44,7 +53,7 @@ export default function App({ Component, pageProps }) {
           artistArray={artistArray}
           favouritesArray={favouritesArray}
           handleFavourites={handleFavourites}
-          setArtistArrayComments={setArtistArrayComments}
+          setArtistArrayComments={handleUpdateArtistArrayComments}
           artistArrayComments={artistArrayComments}
           {...pageProps}
         />
